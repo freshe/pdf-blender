@@ -21,31 +21,29 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>PDF Blender</title>
+    <meta name="description" content="PDF Blender (Merger) is a web based app for merging PDF files."/>
+    <title>PDF Blender - Merge PDF files</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
 </head>
 <body>
 <div class="container">
-    
     <div class="content">
-            <main role="main">
-                @RenderBody()
-            </main>
-            <footer>
-                <p class="text-center">
-                    <small>
-                        Powered by <a href="https://github.com/itext/itext7-dotnet" target="_blank">iText</a> under <a href="https://www.gnu.org/licenses/agpl-3.0-standalone.html" target="_blank">AGPL</a><br/>
-                        Full source code to this project can be found <a href="https://github.com/freshe/pdf-blender" target="_blank">here</a>
-                    </small>
-                </p>
-                
-                <p class="text-center text-light">
-                    <small>&copy; 2022 <a href="https://www.fredrikblank.com" target="_blank">freshbit</a></small>
-                </p>
-            </footer>
+        <main role="main">
+            @RenderBody()
+        </main>
+        <footer>
+            <p class="text-center">
+                <small>
+                    Powered by <a href="https://github.com/itext/itext7-dotnet" target="_blank">iText</a> under <a href="https://www.gnu.org/licenses/agpl-3.0-standalone.html" target="_blank">AGPL</a><br/>
+                    Full source code to this project can be found <a href="https://github.com/freshe/pdf-blender" target="_blank">here</a>
+                </small>
+            </p>
+            
+            <p class="text-center text-light">
+                <small>&copy; 2022 <a href="https://www.fredrikblank.com" target="_blank">freshbit</a></small>
+            </p>
+        </footer>
     </div>
-    
-
 </div>
 @await RenderSectionAsync("Scripts", required: false)
 </body>
