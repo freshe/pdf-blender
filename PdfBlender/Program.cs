@@ -21,6 +21,10 @@ using PdfBlender.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var logFilePath = builder.Configuration["LogFilePath"] ?? "/var/log/pdf-blender.log";
+var logActive = bool.Parse(builder.Configuration["Log"] ?? "False");
+
+builder.Services.AddSingleton(new AppLogger(logActive, logFilePath));
 builder.Services.AddScoped<IPdfManager, PdfManager>();
 
 if (builder.Environment.IsDevelopment())

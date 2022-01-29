@@ -26,10 +26,12 @@ namespace PdfBlender.Controllers;
 public class MainController : Controller
 {
     private readonly IPdfManager _pdfManager;
+    private readonly AppLogger _appLogger;
     
-    public MainController(IPdfManager pdfManager)
+    public MainController(IPdfManager pdfManager, AppLogger appLogger)
     {
         _pdfManager = pdfManager;
+        _appLogger = appLogger;
     }
 
     public IActionResult Index()
@@ -45,15 +47,18 @@ public class MainController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> Upload(UploadViewModel viewModel, List<IFormFile> files)
+    public IActionResult Upload(UploadViewModel viewModel, List<IFormFile> files)
     {
         if (ModelState.IsValid && files.Count > 0)
         {
             var streams = new List<Stream>();
+            var names = new List<string>();
             
             foreach (var file in files)
             {
                 var temp = file.OpenReadStream();
+                
+                names.Add(file.FileName);
                 streams.Add(temp);
             }
 
@@ -69,6 +74,15 @@ public class MainController : Controller
                 outputFileName = "default.pdf";
             }
             
+            if (_appLogger.Log)
+            {
+                //Log as little as possible
+                var inputNames = "[" + string.Join(",", names) + "]";
+                var logLine = DateTime.UtcNow + " " + inputNames + " " + outputFileName;
+                
+                _appLogger.WriteToLog(logLine);
+            }
+
             return File(pdf, "application/pdf", outputFileName);
         }
         
