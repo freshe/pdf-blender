@@ -1,0 +1,153 @@
+/*
+PDF Blender - A web based pdf merger powered by iText
+Copyright (C) 2022 freshbit
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+html {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #222;
+  background: #fafafa;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  margin-top: 60px;
+}
+
+h1 {
+  margin-bottom: 0;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-light {
+  color: #666;
+}
+
+a {
+  color: #222;
+}
+
+a:hover {
+  color: #ccc;
+}
+
+.container {
+  max-width: 920px;
+  margin-left: auto;
+  margin-right: auto;
+  background: #ffffff;
+  box-shadow: 2px 2px 4px #eee;
+  border-radius: 6px;
+}
+
+.content {
+  padding: .5rem;
+}
+
+#pdf-merger-upload-container {
+  position: relative;
+  width: 90%;
+  min-height: 200px;
+  border: 4px dotted #ccc;
+  border-radius: 6px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#pdf-merger-upload-container > div {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  top: 50%;
+  color: #888;
+}
+
+#pdf-merger-progress-container {
+  height: 18px;
+  width: 100%;
+}
+
+#pdf-merger-progress-bar {
+  width: 0;
+  height: 100%;
+  background: #1e90ff;
+  color: #fafafa;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+#pdf-merger-message-container {
+  text-align: center;
+  color: #ff8c00;
+}
+
+#pdf-merger-upload-form {
+  margin-top: 1rem;
+}
+
+input[type="checkbox"] {
+  margin: 0;
+}
+
+.input-group {
+  margin-bottom: .75rem;
+}
+
+.input-group > label {
+  display: block;
+  margin-bottom: .1rem;
+ 
+}
+.input-group label {
+  font-size: small;
+  font-weight: bold;
+}
+
+.flex-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  margin-left: -1rem;
+}
+
+.flex-group > div {
+  margin-left: 1rem;
+}
+
