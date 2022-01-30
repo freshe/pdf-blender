@@ -67,7 +67,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         <small>
             This app is provided free of charge without any warranty.<br/>
             Your content and privacy are respected – <strong>documents are not stored/saved on the server</strong>.<br/>
-            Uploaded pdf files are immediately deleted when a merge is done.
+            Uploaded pdf files are immediately disposed from memory when a merge is done.
         </small>
     </p>
 </div>
@@ -99,6 +99,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             messageContainer.innerHTML = '';
         };
         
+        //try to prevent chaos
         const togggleContainer = function (show) {
             dropContainer.style.display = show ? 'block' : 'none';
         };
