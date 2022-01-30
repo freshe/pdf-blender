@@ -125,6 +125,10 @@ var FileDrop = (function () {
                     if (_this.complete) {
                         _this.complete();
                     }
+                } else {
+                    if (_this.error) {
+                        _this.error();
+                    }
                 }
             }
         });
@@ -136,12 +140,8 @@ var FileDrop = (function () {
                 _this.progress(e.loaded, percentage);
             });
         }
-        
-        if (this.error) {
-            this._xhr.addEventListener('error', function (e) {
-                _this.error();
-            });
 
+        if (this.error) {
             this._xhr.addEventListener('abort', function (e) {
                 _this.error();
             });
