@@ -80,8 +80,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
         const progressBar = document.querySelector('#pdf-merger-progress-bar');
         const dropContainer = document.querySelector('#pdf-merger-upload-container');
         const messageContainer = document.querySelector('#pdf-merger-message-container');
-        const genericErrorMessasge = 'Something went wrong. Sorry ¯\\_(ツ)_/¯';
         const uploadForm = document.querySelector('#pdf-merger-upload-form');
+        const genericErrorMessasge = 'Something went wrong. Sorry ¯\\_(ツ)_/¯';
         
         const options = {
             url: uploadForm.getAttribute('action'),
@@ -98,12 +98,17 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             progressBar.setAttribute('aria-valuenow', '');
             messageContainer.innerHTML = '';
         };
+        
+        const togggleContainer = function (show) {
+            dropContainer.style.display = show ? 'block' : 'none';
+        };
 
         //file uploader
         const uploader = new FileDrop(dropContainer, options);
         
         //when the upload starts
         uploader.start = function () {
+            togggleContainer(false);
             resetUi();
         };
         
@@ -119,9 +124,12 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
             messageContainer.innerHTML = FileDropValidationError[errorCode];
         };
         
+        uploader.success = function () { };
+        
         //UI cleanup
         uploader.complete = function () {
             setTimeout(function () {
+                togggleContainer(true);
                 resetUi();
             }, 5000);
         };

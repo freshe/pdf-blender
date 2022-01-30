@@ -41,6 +41,7 @@ var FileDrop = (function () {
         this.progress = null;
         this.error = null;
         this.complete = null;
+        this.success = null;
         this.validationError = null;
         
         if (!this.element) {
@@ -60,6 +61,36 @@ var FileDrop = (function () {
         return this._maxFileCount;
     };
     
+    FileDrop.prototype.makeFormData = function() {
+        const data = new FormData();
+
+        if (this.options.form) {
+            for (i = 0; i < this.options.form.elements.length; i++) {
+                const element = this.options.form.elements[i];
+                if (element.name && element.value) {
+                    if ( (element.type === 'checkbox' && element.checked) || element.type !== 'checkbox') {
+                        data.append(element.name, element.value);
+                    }
+                }
+            }
+        }
+        
+        return data;
+    };
+    
+    FileDrop.prototype.addFiles = function(data) {
+        var expectedLength = 0;
+        var i = 0;
+        
+        for (i = 0; i < this._files.length; i++) {
+            const file = this._files[i];
+            expectedLength += file.size;
+            data.append(this._inputName, file);
+        }
+        
+        return expectedLength;
+    }
+    
     FileDrop.prototype.handleDrop = function () {
         const validDrop = this.isValidDrop();
         
@@ -68,32 +99,10 @@ var FileDrop = (function () {
         }
         
         const _this = this;
-        const data = new FormData();
+        const data = this.makeFormData();
+        const expectedLength = this.addFiles(data);
+        
         this._xhr = new XMLHttpRequest();
-        var expectedLength = 0
-        var i = 0;
-        
-        if (this.options.form) {
-            for (i = 0; i < this.options.form.elements.length; i++) {
-                const element = this.options.form.elements[i];
-                if (element.name && element.value) {
-                    if (element.type === 'checkbox') {
-                        if (element.checked) {
-                            data.append(element.name, element.value);
-                        }
-                    } else {
-                        data.append(element.name, element.value);
-                    }
-                }
-            }
-        }
-        
-        for (i = 0; i < this._files.length; i++) {
-            const file = this._files[i];
-            expectedLength += file.size;
-            data.append(this._inputName, file);
-        }
-        
         this._xhr.responseType = 'blob';
         this._xhr.open('POST', this._url, true);
         
@@ -122,8 +131,8 @@ var FileDrop = (function () {
                   
                     window.URL.revokeObjectURL(url);
                     
-                    if (_this.complete) {
-                        _this.complete();
+                    if (_this.success) {
+                        _this.success();
                     }
                 } else {
                     if (_this.error) {
@@ -132,6 +141,12 @@ var FileDrop = (function () {
                 }
             }
         });
+        
+        if (this.complete) {
+            this._xhr.upload.addEventListener('load', function (e) {
+                _this.complete();
+            });
+        }
         
         if (this.progress) {
             this._xhr.upload.addEventListener('progress', function (e) {

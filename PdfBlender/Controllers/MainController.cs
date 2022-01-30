@@ -47,6 +47,7 @@ public class MainController : Controller
     }
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Upload(UploadViewModel viewModel, List<IFormFile> files)
     {
         if (ModelState.IsValid && files.Count > 0)
