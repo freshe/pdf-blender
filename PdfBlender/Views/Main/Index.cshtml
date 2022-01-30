@@ -18,18 +18,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 @model PdfBlender.ViewModels.UploadViewModel
 
-<h1>PDF Blender</h1>
-<h2>Merge PDF files</h2>
-
-<div id="pdf-merger-upload-container">
-    <div>Drop PDF files</div>
-</div>
-
-<div id="pdf-merger-progress-container">
-    <div id="pdf-merger-progress-bar" aria-valuenow=""></div>
-</div>
-
-<div id="pdf-merger-message-container"></div>
+<h3 class="text-center">1. Setup</h3>
 
 <form method="post" asp-action="Upload" id="pdf-merger-upload-form">
     <div class="flex-group">
@@ -61,12 +50,24 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
     </div>
 </form>
 
+<h3 class="text-center">2. Upload</h3>
+
+<div id="pdf-merger-upload-container">
+    <div>Drop PDF files</div>
+</div>
+
+<div id="pdf-merger-progress-container">
+    <div id="pdf-merger-progress-bar" aria-valuenow=""></div>
+</div>
+
+<div id="pdf-merger-message-container"></div>
+
 <div>
     <p class="text-center">
         <small>
             This app is provided free of charge without any warranty.<br/>
-            Your content and privacy are respected – <strong>Your content are not stored/saved on the server</strong>.<br/>
-            Uploaded files are immediately deleted when a merge is done.
+            Your content and privacy are respected – <strong>documents are not stored/saved on the server</strong>.<br/>
+            Uploaded pdf files are immediately deleted when a merge is done.
         </small>
     </p>
 </div>
