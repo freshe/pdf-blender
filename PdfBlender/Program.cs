@@ -16,6 +16,7 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+using Microsoft.AspNetCore.HttpOverrides;
 using PdfBlender.Core;
 using PdfBlender.Services;
 
@@ -46,6 +47,12 @@ var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
 {
+    app.UseForwardedHeaders(new ForwardedHeadersOptions
+    {
+        ForwardedHeaders = ForwardedHeaders.XForwardedFor | 
+                           ForwardedHeaders.XForwardedProto
+    });
+    
     app.UseHsts();
 }
 
