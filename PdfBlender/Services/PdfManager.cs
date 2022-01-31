@@ -37,7 +37,7 @@ public class PdfManager : IPdfManager
         var document = new PdfDocument(writer);
         
         //producer wille be X; modified using iText under AGPL
-        document.GetDocumentInfo().SetProducer("pdf-blender.com");
+        document.GetDocumentInfo().SetProducer("freshbit PDF-blender (AGPL)");
         
         if (options.Tagged)
         {
