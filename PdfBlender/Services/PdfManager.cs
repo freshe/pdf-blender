@@ -32,10 +32,13 @@ public class PdfManager : IPdfManager
         using var writer = new PdfWriter(stream);
         writer.SetCloseStream(false);
         writer.SetSmartMode(true);
-
+        
         //the new "combined" document
         var document = new PdfDocument(writer);
-
+        
+        //producer wille be X; modified using iText under AGPL
+        document.GetDocumentInfo().SetProducer("pdf-blender.com");
+        
         if (options.Tagged)
         {
             document.InitializeOutlines();
