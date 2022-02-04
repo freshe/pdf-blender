@@ -30,8 +30,14 @@ public class MainController : Controller
 
     class PdfResult
     {
-        public Stream Pdf { get; set; }
-        public string OutputFileName { get; set; }
+        public PdfResult(Stream pdf, string outputFileName)
+        {
+            Pdf = pdf;
+            OutputFileName = outputFileName;
+        }
+
+        public Stream Pdf { get; }
+        public string OutputFileName { get; }
     }
     
     public MainController(IPdfManager pdfManager, AppLogger appLogger)
@@ -111,10 +117,6 @@ public class MainController : Controller
             _appLogger.WriteToLog(logLine);
         }
 
-        return new PdfResult
-        {
-            Pdf = pdf,
-            OutputFileName = outputFileName
-        };
+        return new PdfResult(pdf, outputFileName);
     }
 }

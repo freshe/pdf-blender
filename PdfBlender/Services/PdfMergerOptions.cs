@@ -22,6 +22,6 @@ namespace PdfBlender.Services;
 
 public class PdfMergerOptions : IPdfMergerOptions
 {
-    public string Language { get; set; } = "en-US";
+    public string Language { get; set; } = "";
     public bool Tagged { get; set; }
 }

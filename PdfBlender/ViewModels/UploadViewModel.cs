@@ -20,7 +20,7 @@ namespace PdfBlender.ViewModels;
 
 public class UploadViewModel
 {
-    public bool Tagged { get; set; } = false;
+    public bool Tagged { get; init; } = false;
     public string FileName { get; init; } = "";
     public string Language { get; init; } = "";
 }
