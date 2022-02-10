@@ -46,7 +46,7 @@ h1 {
 
 h2 {
   margin-top: 0;
-  font-size: 1.65rem;
+  font-size: 1.4rem;
 }
 
 h1, h2 {
@@ -79,7 +79,7 @@ a:hover {
   margin-right: auto;
   background: #ffffff;
   box-shadow: 1px 2px 4px #ddd;
-  border-radius: 18px;
+  border-radius: 5px;
 }
 
 .content {
@@ -91,7 +91,6 @@ a:hover {
   width: 90%;
   min-height: 200px;
   border: 4px dotted #ccc;
-  border-radius: 12px;
   margin-left: auto;
   margin-right: auto;
 }
