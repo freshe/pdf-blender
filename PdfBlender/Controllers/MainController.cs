@@ -57,18 +57,6 @@ public class MainController : Controller
         
         return View(model);
     }
-
-    [HttpPost]
-    public IActionResult GetPdf(UploadViewModel viewModel, List<IFormFile> files)
-    {
-        if (ModelState.IsValid && files.Count > 0)
-        {
-            var result = GetResult(viewModel, files);
-            return File(result.Pdf, "application/pdf", result.OutputFileName);
-        }
-
-        return new EmptyResult();
-    }
     
     [HttpPost]
     [ValidateAntiForgeryToken]
